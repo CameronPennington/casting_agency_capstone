@@ -3,7 +3,6 @@ from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-SQLALCHEMY_TRACK_MODIFCATIONS = False
 
 db = SQLAlchemy()
 
