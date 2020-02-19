@@ -16,3 +16,9 @@ class Movie(db.Model):
     id = Column(db.Integer, primary_key = True)
     title = Column(db.String(30), nullable = False)
     release_date = Column(db.String(30), nullable = False)
+
+class Actor(db.Model):
+    id = Column(db.Integer, primary_key = True)
+    name = Column(db.String(30), nullable = False, unique = True)
+    age = Column(db.Integer)
+    gender = Column(db.String(10))
