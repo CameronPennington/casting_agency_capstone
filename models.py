@@ -13,12 +13,18 @@ def setup_db(app):
     db.init_app(app)
 
 class Movie(db.Model):
+    __tablename__ = 'Movie'
+
     id = Column(db.Integer, primary_key = True)
     title = Column(db.String(30), nullable = False)
     release_date = Column(db.String(30), nullable = False)
 
 class Actor(db.Model):
+    __tablename__ = 'Actor'
+
     id = Column(db.Integer, primary_key = True)
     name = Column(db.String(30), nullable = False, unique = True)
     age = Column(db.Integer)
     gender = Column(db.String(10))
+
+#maybe add appearances table?
