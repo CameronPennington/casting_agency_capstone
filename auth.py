@@ -11,9 +11,9 @@ from jose import jwt
 from urllib.request import urlopen
 
 #change to my casting agency account
-AUTH0_DOMAIN = ''
+AUTH0_DOMAIN = 'penncoffee.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = ''
+API_AUDIENCE = 'casting'
 
 ## AuthError Exception
 

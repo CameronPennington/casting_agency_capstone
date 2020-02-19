@@ -25,7 +25,7 @@ def create_movie(token):
       abort(405)
     
     req_data = request.get_json()
-
+    print(req_data)
     new_movie = Movie(
       title = req_data['title'],
       release_date = req_data['release_date']
