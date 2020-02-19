@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask, request, abort, jsonify
 from sqlalchemy import exc
 from flask_sqlalchemy import SQLAlchemy
@@ -12,9 +13,10 @@ def create_app(test_config=None):
   setup_db(app)
   CORS(app)
   return app
-  
-db = SQLAlchemy()
+
+
 APP = create_app()
+db = SQLAlchemy()
 
 @APP.route('/movies', methods=['POST'])
 @requires_auth('post:movies')
@@ -24,12 +26,13 @@ def create_movie(token):
       abort(405)
     
     req_data = request.get_json()
-    print(req_data)
+   
+    # print(req_data)
     new_movie = Movie(
       title = req_data['title'],
       release_date = req_data['release_date']
     )
-
+    print(new_movie)
     db.session.add(new_movie)
     db.session.commit()
   except Exception:
