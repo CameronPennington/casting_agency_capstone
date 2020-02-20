@@ -91,7 +91,34 @@ def find_actors(token):
   except Exception:
     abort(422)
 
+@APP.route('/movies/<id>', methods=['PATCH'])
+@requires_auth('patch:actors')
+def update_movie(token, id):
+  try:
 
+      req_data = request.get_json()
+      movie = Movie.query.get(id)
+
+      if not movie:
+          abort(404)
+
+      if 'title' in req_data:
+          title = req_data['title']
+          movie.title = title
+
+      if 'release_date' in req_data:
+          release_date = req_data['release_date']
+          movie.release_date = release_date
+
+      db.session.commit()
+  except Exception:
+      db.session.rollback()
+      abort(422)
+  finally:
+      db.session.close()
+      return jsonify({
+        'success': True
+      }), 200
 
 if __name__ == '__main__':
     APP.run(host='0.0.0.0', port=8080, debug=True)
