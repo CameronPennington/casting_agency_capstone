@@ -38,5 +38,28 @@ def create_movie(token):
       'success': True
     }), 201
 
+@APP.route('/actors', methods=['POST'])
+@requires_auth('post:actors')
+def create_actor(token):
+  try:
+    
+    req_data = request.get_json()
+    name = req_data['name']
+    age = req_data['age']
+    gender = req_data['gender']
+
+    new_actor = Actor(name=name, age=age, gender=gender)
+
+    db.session.add(new_actor)
+    db.session.commit()
+  except Exception:
+    db.session.rollback()
+    abort(422)
+  finally:
+    db.session.close()
+    return jsonify({
+      'success': True
+    }), 201
+
 if __name__ == '__main__':
     APP.run(host='0.0.0.0', port=8080, debug=True)
