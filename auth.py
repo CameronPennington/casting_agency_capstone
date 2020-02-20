@@ -4,11 +4,6 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
-import json
-from flask import request, _request_ctx_stack, abort
-from functools import wraps
-from jose import jwt
-from urllib.request import urlopen
 
 #change to my casting agency account
 AUTH0_DOMAIN = 'penncoffee.auth0.com'
