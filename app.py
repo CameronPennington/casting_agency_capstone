@@ -76,6 +76,21 @@ def find_movies(token):
   except Exception:
     abort(422)
 
+@APP.route('/actors', methods=['GET'])
+@requires_auth('get:actors')
+def find_actors(token):
+  try:
+    
+    actors = Actor.query.order_by('id').all()
+    formatted_actors = [actor.format() for actor in actors]
+    return jsonify({
+      'actors': formatted_actors,
+      'success': True
+    }), 200
+
+  except Exception:
+    abort(422)
+
 
 
 if __name__ == '__main__':
