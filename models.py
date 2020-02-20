@@ -23,6 +23,13 @@ class Movie(db.Model):
         self.title = title
         self.release_date = release_date
 
+    def format(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'release_date': self.release_date
+        }
+
 
 class Actor(db.Model):
     __tablename__ = 'Actor'
@@ -36,5 +43,13 @@ class Actor(db.Model):
         self.name = name
         self.age = age
         self.gender = gender
+
+    def format(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'age': self.age,
+            'gender': self.gender
+        }
 
 #maybe add appearances table?
