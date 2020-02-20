@@ -174,5 +174,26 @@ def delete_movie(token, id):
           'delete': deleted_id
       }), 200
 
+@APP.route('/actors/<id>', methods=['DELETE'])
+@requires_auth('delete:actor')
+def delete_actor(token, id):
+  try:
+      actor = Actor.query.get(id)
+      deleted_id = actor.id
+      if not actor:
+          abort(404)
+      
+      db.session.delete(actor)
+      db.session.commit()
+  except Exception:
+      db.session.rollback()
+      abort(422)
+  finally:
+      db.session.close()
+      return jsonify({
+          'success': True,
+          'delete': deleted_id
+      }), 200
+
 if __name__ == '__main__':
     APP.run(host='0.0.0.0', port=8080, debug=True)
