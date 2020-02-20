@@ -19,6 +19,11 @@ class Movie(db.Model):
     title = Column(db.String(30), nullable = False)
     release_date = Column(db.String(30), nullable = False)
 
+    def __init__(self, title, release_date):
+        self.title = title
+        self.release_date = release_date
+
+
 class Actor(db.Model):
     __tablename__ = 'Actor'
 
@@ -26,5 +31,10 @@ class Actor(db.Model):
     name = Column(db.String(30), nullable = False, unique = True)
     age = Column(db.Integer)
     gender = Column(db.String(10))
+
+    def __init__(self, name, age, gender):
+        self.name = name
+        self.age = age
+        self.gender = gender
 
 #maybe add appearances table?

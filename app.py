@@ -14,13 +14,7 @@ def create_app(test_config=None):
   CORS(app)
   return app
 
-
-
 APP = create_app()
-
-
-
-# db = SQLAlchemy()
 
 @APP.route('/movies', methods=['POST'])
 @requires_auth('post:movies')
