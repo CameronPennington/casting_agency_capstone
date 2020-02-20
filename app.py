@@ -61,5 +61,22 @@ def create_actor(token):
       'success': True
     }), 201
 
+@APP.route('/movies', methods=['GET'])
+@requires_auth('get:movies')
+def find_movies(token):
+  try:
+    
+    movies = Movie.query.order_by('id').all()
+    formatted_movies = [movie.format() for movie in movies]
+    return jsonify({
+      'movies': formatted_movies,
+      'success': True
+    }), 200
+
+  except Exception:
+    abort(422)
+
+
+
 if __name__ == '__main__':
     APP.run(host='0.0.0.0', port=8080, debug=True)
