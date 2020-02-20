@@ -195,5 +195,21 @@ def delete_actor(token, id):
           'delete': deleted_id
       }), 200
 
+@APP.errorhandler(404)
+def not_found(error):
+    return jsonify({
+                    "success": False, 
+                    "error": 404,
+                    "message": "not found"
+                    }), 404
+
+@APP.errorhandler(422)
+def unprocessable(error):
+    return jsonify({
+                    "success": False, 
+                    "error": 422,
+                    "message": "unprocessable"
+                    }), 422
+
 if __name__ == '__main__':
     APP.run(host='0.0.0.0', port=8080, debug=True)
