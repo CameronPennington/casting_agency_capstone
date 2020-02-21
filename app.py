@@ -62,12 +62,14 @@ def create_actor(token):
     }), 201
 
 @APP.route('/movies', methods=['GET'])
-@requires_auth('get:movies')
-def find_movies(token):
+# @requires_auth('get:movies')
+# def find_movies(token):
+def find_movies():
   try:
     
     movies = Movie.query.order_by('id').all()
     formatted_movies = [movie.format() for movie in movies]
+
     return jsonify({
       'movies': formatted_movies,
       'success': True
