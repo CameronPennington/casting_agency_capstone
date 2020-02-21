@@ -62,9 +62,8 @@ def create_actor(token):
     }), 201
 
 @APP.route('/movies', methods=['GET'])
-# @requires_auth('get:movies')
-# def find_movies(token):
-def find_movies():
+@requires_auth('get:movies')
+def find_movies(token):
   try:
     
     movies = Movie.query.order_by('id').all()

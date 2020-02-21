@@ -44,13 +44,11 @@ class CastingTestCase(unittest.TestCase):
         pass
 
     def test_get_movies(self):
-        res = self.client().get('/movies')
-        print(res.data)
+        res = self.client().get('/movies', headers=self.casting_assistant_auth)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
-        # self.assertEqual(data['success'], True)
-        # self.assertTrue(data['movies'])
+        self.assertIsNotNone(data['movies'])
 
     # def test_delete_movie(self):
     #     res = self.client().delete('/movies/1')
