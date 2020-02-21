@@ -4,7 +4,7 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 
 from app import APP
-from models import setup_db, Movie, Actor
+from models import setup_db, Movie, Actor, db
 
 class CastingTestCase(unittest.TestCase):
     """This class represents the casting test case"""
@@ -19,7 +19,7 @@ class CastingTestCase(unittest.TestCase):
 
         # binds the app to the current context
         with self.app.app_context():
-            self.db = SQLAlchemy()
+            self.db = db
             self.db.init_app(self.app)
             # create all tables
             self.db.create_all()
