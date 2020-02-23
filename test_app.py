@@ -29,15 +29,11 @@ class CastingTestCase(unittest.TestCase):
             'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzNzY1MjNiZjNhMGU1YzAwMjI5NiIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI0NTg1MjEsImV4cCI6MTU4MjU0MjUyMSwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvciIsImRlbGV0ZTptb3ZpZXMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInBvc3Q6YWN0b3JzIiwicG9zdDptb3ZpZXMiXX0.YTfHmosdQgxk10k5LaErg1Hj60jFzQvSjGQqrqLWKw3sn1aYy7_FWztN4UcTLyH3Qeb0VrGk3T-TpuaZDm_UbO9XLIJLgjBBX2-thwB2cMkrHLkakCfSw4faXTwUKiGFKgXVbKwBdroqt4-A8Xjhuda4RuBOdBDWk5EhMIroRJiXqwcfUcOMPOc0te0KqvkvA99x-RUqhQDZP8pyaMBrMri7nnkkKi4dxsOL77YgSfJeHWIypHJjICxTCv3g73NZxg9u-f921IPsG7MGSGniJl96b1kvl6wB5VSJADAMjdTNMdLmLAzT1s26xhXnEYZXdDAK5rHGNNXYStxaf1q8zw'
         }
 
-        self.starting_movie_1 = {
+        self.starting_movie = {
             'title': 'Babe',
             'release_date': '09-15-98'
         }
 
-        self.starting_movie_2 = {
-            'title': 'Double Dragon',
-            'release_date': '07-11-99'
-        }
 
         self.new_movie = {
             'title': 'Babe, Pig in the City',
@@ -52,8 +48,7 @@ class CastingTestCase(unittest.TestCase):
             self.db.create_all()
 
         #Populating test data for delete and patch test. Probably not best practice but will have to do while I learn more about mocking data.
-        self.client().post('/movies', json=self.starting_movie_1, headers=self.executive_producer_auth)
-        self.client().post('/movies', json=self.starting_movie_2, headers=self.executive_producer_auth)      
+        self.client().post('/movies', json=self.starting_movie, headers=self.executive_producer_auth)     
         self.permissions = [self.casting_assistant_auth, self.casting_director_auth, self.executive_producer_auth]
         self.limited_permissions = [self.casting_assistant_auth, self.casting_director_auth]
     def tearDown(self):
