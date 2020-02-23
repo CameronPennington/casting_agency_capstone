@@ -26,15 +26,15 @@ class CastingTestCase(unittest.TestCase):
 
 
         self.casting_assistant_auth = {
-            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzODFhZGViYzdkMGVmZjhiZDU4NCIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODIzMDA2NzIsImV4cCI6MTU4MjM4NDY3MiwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIl19.PYkzWkL-X4fEjnYFOSZKFVAU4XIAtyRz7o1Ibix-IuGU1AvYYdN2hib82qSR0HSwJTBnR_6ldH-tmMN2EVZGwcxNJyZfyBBbbyTvtpBED2P8rtwjPdtXzx99D_xsYZr0zxNjhbqe2QVe0GcpNfqnWqBHV5O0bZoF69KiP5W3_C_QQm70MpphikbrapCXipUZJQS5HkOH7IBepDNQDzpbavWXr7n-mRL04v0l2wcf8S0dnZXM-hd_bEY3uvcfBRfbf5j00OTzv5mLsP3ZhdzILuxC9arJ8KBMWMGOITlbOzot5NNnPXkNdi7YkZcKpI71EwPwpIU8C4jRfAdCpr1xig'
+            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzODFhZGViYzdkMGVmZjhiZDU4NCIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI0NTg1NzUsImV4cCI6MTU4MjU0MjU3NSwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIl19.QN8Vcef0XTUhHfVQHdCbTQo1ZFGSYhAmxIrYpqAmBf1dkCa6UFZgOq5bbfHyYvLEQy2a0KJiD2HSPOnY7IgffCzepgkwkEuADPZfp7EaDBiqS8D_Y96HE_Z_iBlrP87Sy6LffR925y8rAik0E7M5klz3jsW3f_G9vruV6yxnKFcpWwaaEc_iE5qFoVGxr4WPWRA4vS-By9ZCrHIUCrxyKjSStXV9-kbjj1ZRzsetmIG8lYX7XCishTcdaymqkXXDhtnLwS19JIIKcPwDqjXI90WM6kdticYkgkU8bbBmzMkfGA1GkQLZNjuEzw5nHNlr9nce0nYm61sAVzKK8QgVWQ'
         }
 
         self.casting_director_auth = {
-            'authorization': 'Bearer '
+            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzN2Y3YmZkZWU2MGYxZjlkYTFkOSIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI0NTg2NDksImV4cCI6MTU4MjU0MjY0OSwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvciIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiXX0.oRKeq4uS1_lUCg23IgQs2QgYvMNTd_QtGiF4gqHdi8f_Hmmrmm7QfFL19qq2xXerNXxOT75DD60NqQ9o7OT5doix_kesWsJ6edCOUjtGl24ohVGriVOZOLjFHaihEVP_Rx6c6JSi25usZoq8HpRAz6kACyO1-i6UKFrpuknKKYe-gOFFCmtpk3rNTxJx_KUtmyPGjF-KYx9dZzc3mYlMnqjkzP8--9NTQ5l8m5mZfHIgzaOrSh2SRDu2yyKmUNz8QqeNuxvdjM4BXAgIqbKCvXFUYXhRRlU7oE6Tn-U2auIdly9xEnUgI-cKQKoxJUPwshr0wsvPl5R7gKhWtoJdMw'
         }
 
         self.executive_producer_auth = {
-            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzNzY1MjNiZjNhMGU1YzAwMjI5NiIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODIzMDI2MTQsImV4cCI6MTU4MjM4NjYxNCwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvciIsImRlbGV0ZTptb3ZpZXMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInBvc3Q6YWN0b3JzIiwicG9zdDptb3ZpZXMiXX0.mMPRE2KUR0nJ3Tr8RBEbKg9ro6g3_k4Vg0yIevvmDSl3DRzD5onRaxUxMAgPhznqYI7mHOqV2I4epDo_o5nuw30QF53E_OXDtKUF60eWD7yjF8bC1SYSlEPHb5sbcGf9zEr5wqZdM9bMzxnbCpYH2O0aqrBaFQy31Ud5jI6h-9EQg-I2CpaH5qP0aeLFZ6ZhSHQr141Qo5gnZ75FP-edAAwNq4fplExNE6t8ViDlGOXuxEFnHyay4sILo43o78QoQQiqOrmPsw_vPNWJphEs7ps8JJ0_tF7kmAmR4XHYle5J8Nh3cNlyEuAdum2zTZHUbV775Y8SHxQs9vOhpejqRA'
+            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzNzY1MjNiZjNhMGU1YzAwMjI5NiIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI0NTg1MjEsImV4cCI6MTU4MjU0MjUyMSwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvciIsImRlbGV0ZTptb3ZpZXMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInBvc3Q6YWN0b3JzIiwicG9zdDptb3ZpZXMiXX0.YTfHmosdQgxk10k5LaErg1Hj60jFzQvSjGQqrqLWKw3sn1aYy7_FWztN4UcTLyH3Qeb0VrGk3T-TpuaZDm_UbO9XLIJLgjBBX2-thwB2cMkrHLkakCfSw4faXTwUKiGFKgXVbKwBdroqt4-A8Xjhuda4RuBOdBDWk5EhMIroRJiXqwcfUcOMPOc0te0KqvkvA99x-RUqhQDZP8pyaMBrMri7nnkkKi4dxsOL77YgSfJeHWIypHJjICxTCv3g73NZxg9u-f921IPsG7MGSGniJl96b1kvl6wB5VSJADAMjdTNMdLmLAzT1s26xhXnEYZXdDAK5rHGNNXYStxaf1q8zw'
         }
 
         self.new_movie = {
@@ -42,30 +42,35 @@ class CastingTestCase(unittest.TestCase):
             'release_date': '04-17-00'
         }
         
+        self.permissions = [self.executive_producer_auth, self.casting_assistant_auth, self.casting_director_auth]
 
     def tearDown(self):
         """Executed after reach test"""
         pass
 
+
     def test_get_movies(self):
-        res = self.client().get('/movies', headers=self.casting_assistant_auth)
-        data = json.loads(res.data)
+        for permission in self.permissions:
+            with self.subTest():
+                print(permission)
+                res = self.client().get('/movies', headers=permission)
+                data = json.loads(res.data)
 
-        self.assertEqual(res.status_code, 200)
-        self.assertIsNotNone(data['movies'])
+                self.assertEqual(res.status_code, 200)
+                self.assertIsNotNone(data['movies'])
 
-    def test_create_movie(self):
-        res = self.client().post('/movies', json=self.new_movie, headers=self.executive_producer_auth)
-        data = json.loads(res.data)
+    # def test_create_movie(self):
+    #     res = self.client().post('/movies', json=self.new_movie, headers=self.executive_producer_auth)
+    #     data = json.loads(res.data)
 
-        self.assertEqual(res.status_code, 201)
+    #     self.assertEqual(res.status_code, 201)
 
-    def test_delete_movie(self):
-        res = self.client().delete('/movies/4', headers=self.executive_producer_auth)
-        data = json.loads(res.data)
+    # def test_delete_movie(self):
+    #     res = self.client().delete('/movies/4', headers=self.executive_producer_auth)
+    #     data = json.loads(res.data)
 
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(data['delete'], 4)
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['delete'], 4)
 
 if __name__ == "__main__":
     unittest.main()
