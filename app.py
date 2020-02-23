@@ -164,30 +164,21 @@ def delete_movie(token, id):
     db.session.commit()
 
     return jsonify({
-      'success': True,
-      'message': 'Delete occured'
+      'success': True
     }), 200
 
 @APP.route('/actors/<id>', methods=['DELETE'])
 @requires_auth('delete:actor')
 def delete_actor(token, id):
-  try:
-      actor = Actor.query.get(id)
-      if not actor:
-          abort(404)      
-      deleted_id = actor.id
+  actor = Actor.query.get(id)
+  if not actor:
+    abort(404)
+  db.session.delete(actor)
+  db.session.commit()
 
-      db.session.delete(actor)
-      db.session.commit()
-  except Exception:
-      db.session.rollback()
-      abort(422)
-  finally:
-      db.session.close()
-      return jsonify({
-          'success': True,
-          'deleted': deleted_id
-      }), 200
+  return jsonify({
+    'success': True
+  }), 200
 
 @APP.errorhandler(404)
 def not_found(error):
