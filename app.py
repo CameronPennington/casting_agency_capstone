@@ -64,6 +64,8 @@ def create_actor(token):
 @APP.route('/movies', methods=['GET'])
 @requires_auth('get:movies')
 def find_movies(token):
+  if request.method != 'GET' and request.method != 'POST':
+    abort(405)
   try:
     
     movies = Movie.query.order_by('id').all()
@@ -80,6 +82,8 @@ def find_movies(token):
 @APP.route('/actors', methods=['GET'])
 @requires_auth('get:actors')
 def find_actors(token):
+  if request.method != 'GET' and request.method != 'POST':
+    abort(405)
   try:
     
     actors = Actor.query.order_by('id').all()
@@ -187,6 +191,13 @@ def not_found(error):
                     "error": 404,
                     "message": "not found"
                     }), 404
+
+@APP.errorhandler(405)
+def not_allowed(e):
+  return jsonify({
+    'success': False,
+    'message': 'Not allowed'
+  }), 405
 
 @APP.errorhandler(422)
 def unprocessable(error):
