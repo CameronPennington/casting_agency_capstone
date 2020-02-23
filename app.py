@@ -172,7 +172,7 @@ def delete_movie(token, id):
       db.session.close()
       return jsonify({
           'success': True,
-          'delete': deleted_id
+          'deleted': deleted_id
       }), 200
 
 @APP.route('/actors/<id>', methods=['DELETE'])
