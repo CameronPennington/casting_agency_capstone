@@ -193,7 +193,7 @@ def delete_actor(token, id):
       db.session.close()
       return jsonify({
           'success': True,
-          'delete': deleted_id
+          'deleted': deleted_id
       }), 200
 
 @APP.errorhandler(404)

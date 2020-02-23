@@ -43,6 +43,22 @@ class CastingTestCase(unittest.TestCase):
             'title': 'Godzilla'
         }
 
+        self.starting_actor = {
+            'name': 'Jonathan Lipnicki',
+            'age': '28',
+            'gender': 'male'
+        }
+
+        self.new_actor = {
+            'name': 'Taraji P. Henson',
+            'age': '40',
+            'gender': 'female'
+        }
+
+        self.patch_actor = {
+            'age': '29'
+        }
+
         # binds the app to the current context
         with self.app.app_context():
             self.db = db
@@ -52,9 +68,13 @@ class CastingTestCase(unittest.TestCase):
             self.db.create_all()
 
         #Populating test data for delete and patch test. Probably not best practice but will have to do while I learn more about mocking data.
-        self.client().post('/movies', json=self.starting_movie, headers=self.executive_producer_auth)     
+        self.client().post('/movies', json=self.starting_movie, headers=self.executive_producer_auth)
+        self.client().post('/actors', json=self.starting_actor, headers=self.executive_producer_auth)  
+        #Different combinations of permissions for testing      
         self.permissions = [self.casting_assistant_auth, self.casting_director_auth, self.executive_producer_auth]
         self.limited_permissions = [self.casting_assistant_auth, self.casting_director_auth]
+        self.elevated_permissions = [self.casting_director_auth, self.executive_producer_auth]
+
     def tearDown(self):
         """Executed after reach test"""
         self.db.drop_all()
@@ -105,7 +125,53 @@ class CastingTestCase(unittest.TestCase):
                 
                 self.assertEqual(res.status_code, 401)
 
+    def test_get_actors(self):
+        for permission in self.permissions:
+            with self.subTest():
+                res = self.client().get('/actors', headers=permission)
+                data = json.loads(res.data)
 
+                self.assertEqual(res.status_code, 200)
+                self.assertIsNotNone(data['actors'])
+
+    def test_post_actor(self):
+        for permission in self.permissions:
+            with self.subTest():
+                res = self.client().post('/actors', json=self.new_actor, headers=permission)
+                #if blocks to check different permissions
+                if permission == self.casting_assistant_auth:
+                    self.assertEqual(res.status_code, 401)
+                else:
+                    self.assertEqual(res.status_code, 201)
+
+    def test_patch_actor(self):
+        for permission in self.permissions:
+            with self.subTest():
+                res = self.client().patch('/actors/1', json=self.patch_actor, headers=permission)
+                #if blocks to check different permissions
+                if permission == self.casting_assistant_auth:
+                    self.assertEqual(res.status_code, 401)
+                else:
+                    self.assertEqual(res.status_code, 200)
+
+    def test_delete_actor_casting_assistant(self):
+        res = self.client().delete('/actors/1', headers=self.casting_assistant_auth)
+
+        self.assertEqual(res.status_code, 401)
+
+    def test_delete_actor_casting_director(self):
+        res = self.client().delete('/actors/1', headers=self.casting_director_auth)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['deleted'], 1)
+    
+    def test_delete_actor_executive_producer(self):
+        res = self.client().delete('/actors/1', headers=self.executive_producer_auth)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['deleted'], 1)
 
     # def test_delete_movie(self):
     #     res = self.client().delete('/movies/4', headers=self.executive_producer_auth)
