@@ -34,11 +34,15 @@ class CastingTestCase(unittest.TestCase):
             'release_date': '09-15-98'
         }
 
-
         self.new_movie = {
             'title': 'Babe, Pig in the City',
             'release_date': '04-17-00'
         }
+
+        self.patch_movie = {
+            'title': 'Godzilla'
+        }
+
         # binds the app to the current context
         with self.app.app_context():
             self.db = db
@@ -75,6 +79,16 @@ class CastingTestCase(unittest.TestCase):
                     self.assertEqual(res.status_code, 401)
                 else:
                     self.assertEqual(res.status_code, 201)
+
+    def test_patch_movie(self):
+        for permission in self.permissions:
+            with self.subTest():
+                res = self.client().patch('/movies/1', json=self.patch_movie, headers=permission)
+                #if blocks to check different permissions
+                if permission == self.casting_assistant_auth:
+                    self.assertEqual(res.status_code, 401)
+                else:
+                    self.assertEqual(res.status_code, 200)
 
     def test_delete_movie_with_perm(self):
 
