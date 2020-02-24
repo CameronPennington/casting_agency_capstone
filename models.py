@@ -6,7 +6,7 @@ import json
 
 db = SQLAlchemy()
 
-SQLALCHEMY_DATABASE_URI = 'postgres://postgres:postgres@localhost:5432/casting'
+SQLALCHEMY_DATABASE_URI = 'postgres://gjvotdgqwslmsd:27a0dd4dffb6901c5833aa51c5cbda6bd1c41e5f417bff11a6eb86d70b617635@ec2-52-73-247-67.compute-1.amazonaws.com:5432/d6d1t6tdju9kei'
 
 def setup_db(app, database_path=SQLALCHEMY_DATABASE_URI):
     app.config['SQLALCHEMY_DATABASE_URI'] = database_path
