@@ -19,47 +19,43 @@ APP = create_app()
 @APP.route('/movies', methods=['POST'])
 @requires_auth('post:movies')
 def create_movie(token):
-  try:
-    
-    req_data = request.get_json()
-    title = req_data['title']
-    release_date = req_data['release_date']
 
-    new_movie = Movie( title=title, release_date = release_date)
-
-    db.session.add(new_movie)
-    db.session.commit()
-  except Exception:
-    db.session.rollback()
+  req_data = request.get_json()
+  if 'title' not in req_data or 'release_date' not in req_data:
     abort(422)
-  finally:
-    db.session.close()
-    return jsonify({
-      'success': True
-    }), 201
+  title = req_data['title']
+  release_date = req_data['release_date']
+
+  new_movie = Movie( title=title, release_date = release_date)
+
+  db.session.add(new_movie)
+  db.session.commit()
+
+  db.session.close()
+  return jsonify({
+    'success': True
+  }), 201
 
 @APP.route('/actors', methods=['POST'])
 @requires_auth('post:actors')
 def create_actor(token):
-  try:
-    
-    req_data = request.get_json()
-    name = req_data['name']
-    age = req_data['age']
-    gender = req_data['gender']
 
-    new_actor = Actor(name=name, age=age, gender=gender)
-
-    db.session.add(new_actor)
-    db.session.commit()
-  except Exception:
-    db.session.rollback()
+  req_data = request.get_json()
+  if 'name' not in req_data:
     abort(422)
-  finally:
-    db.session.close()
-    return jsonify({
-      'success': True
-    }), 201
+  name = req_data['name']
+  age = req_data['age']
+  gender = req_data['gender']
+
+  new_actor = Actor(name=name, age=age, gender=gender)
+
+  db.session.add(new_actor)
+  db.session.commit()
+
+  db.session.close()
+  return jsonify({
+    'success': True
+  }), 201
 
 @APP.route('/movies', methods=['GET'])
 @requires_auth('get:movies')
@@ -99,64 +95,56 @@ def find_actors(token):
 @APP.route('/movies/<id>', methods=['PATCH'])
 @requires_auth('patch:movies')
 def update_movie(token, id):
-  try:
 
-      req_data = request.get_json()
-      movie = Movie.query.get(id)
+  req_data = request.get_json()
+  movie = Movie.query.get(id)
 
-      if not movie:
-          abort(404)
+  if not movie:
+      abort(404)
 
-      if 'title' in req_data:
-          title = req_data['title']
-          movie.title = title
+  if 'title' in req_data:
+      title = req_data['title']
+      movie.title = title
 
-      if 'release_date' in req_data:
-          release_date = req_data['release_date']
-          movie.release_date = release_date
+  if 'release_date' in req_data:
+      release_date = req_data['release_date']
+      movie.release_date = release_date
 
-      db.session.commit()
-  except Exception:
-      db.session.rollback()
-      abort(422)
-  finally:
-      db.session.close()
-      return jsonify({
-        'success': True
-      }), 200
+  db.session.commit()
+
+  db.session.close()
+  return jsonify({
+    'success': True
+  }), 200
 
 @APP.route('/actors/<id>', methods=['PATCH'])
 @requires_auth('patch:actors')
 def update_actor(token, id):
-  try:
 
-      req_data = request.get_json()
-      actor = Actor.query.get(id)
+    req_data = request.get_json()
+    actor = Actor.query.get(id)
 
-      if not actor:
-          abort(404)
+    if not actor:
+        abort(404)
 
-      if 'name' in req_data:
-          name = req_data['name']
-          actor.name = name
+    if 'name' in req_data:
+        name = req_data['name']
+        actor.name = name
 
-      if 'age' in req_data:
-          age = req_data['age']
-          actor.age = age
+    if 'age' in req_data:
+        age = req_data['age']
+        actor.age = age
 
-      if 'gender' in req_data:
-          gender = req_data['gender']
-          actor.gender = gender
+    if 'gender' in req_data:
+        gender = req_data['gender']
+        actor.gender = gender
 
-      db.session.commit()
-  except Exception:
-      db.session.rollback()
-      abort(422)
-  finally:
-      db.session.close()
-      return jsonify({
-        'success': True
-      }), 200
+    db.session.commit()
+
+    db.session.close()
+    return jsonify({
+      'success': True
+    }), 200
 
 @APP.route('/movies/<id>', methods=['DELETE'])
 @requires_auth('delete:movies')

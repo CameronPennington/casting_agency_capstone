@@ -18,15 +18,15 @@ class CastingTestCase(unittest.TestCase):
         setup_db(self.app, self.database_path)
 
         self.casting_assistant_auth = {
-            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzODFhZGViYzdkMGVmZjhiZDU4NCIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI0NTg1NzUsImV4cCI6MTU4MjU0MjU3NSwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIl19.QN8Vcef0XTUhHfVQHdCbTQo1ZFGSYhAmxIrYpqAmBf1dkCa6UFZgOq5bbfHyYvLEQy2a0KJiD2HSPOnY7IgffCzepgkwkEuADPZfp7EaDBiqS8D_Y96HE_Z_iBlrP87Sy6LffR925y8rAik0E7M5klz3jsW3f_G9vruV6yxnKFcpWwaaEc_iE5qFoVGxr4WPWRA4vS-By9ZCrHIUCrxyKjSStXV9-kbjj1ZRzsetmIG8lYX7XCishTcdaymqkXXDhtnLwS19JIIKcPwDqjXI90WM6kdticYkgkU8bbBmzMkfGA1GkQLZNjuEzw5nHNlr9nce0nYm61sAVzKK8QgVWQ'
+            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzODFhZGViYzdkMGVmZjhiZDU4NCIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI1NDc5MDcsImV4cCI6MTU4MjYzMTkwNywiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIl19.VIlYXwKLITmhcoPH8Y7SiSK-dtuq-KH82Cy7eVatr0VacTjn9fX4WmHw28337Fs8PJjmSvSp2lxRRKgi54rNlXUC6rQJuPmFybSPIPOreLLmfTg_jcQzR1TSAXkIcX_33liqN5xKf-AykbPo66Z2qeWNSEstpuZwavzkKlsDkULylVZ6Ir4S06DD9pHa11p86M4Xv-EHlFYq4u6uz_Pj_huSOuG4N5kOCcC2X5SrRGgusNlbjJaiMTJtyToByGaiSOONr13zN1zWfH3Dg5rnqdjJ-YOq79es7xF8LcGBA1IkiY1YheF3ZKM-doqkTFj5ofOEIaKUJKtOHCNza3rwVw'
         }
 
         self.casting_director_auth = {
-            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzN2Y3YmZkZWU2MGYxZjlkYTFkOSIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI0NTg2NDksImV4cCI6MTU4MjU0MjY0OSwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvciIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiXX0.oRKeq4uS1_lUCg23IgQs2QgYvMNTd_QtGiF4gqHdi8f_Hmmrmm7QfFL19qq2xXerNXxOT75DD60NqQ9o7OT5doix_kesWsJ6edCOUjtGl24ohVGriVOZOLjFHaihEVP_Rx6c6JSi25usZoq8HpRAz6kACyO1-i6UKFrpuknKKYe-gOFFCmtpk3rNTxJx_KUtmyPGjF-KYx9dZzc3mYlMnqjkzP8--9NTQ5l8m5mZfHIgzaOrSh2SRDu2yyKmUNz8QqeNuxvdjM4BXAgIqbKCvXFUYXhRRlU7oE6Tn-U2auIdly9xEnUgI-cKQKoxJUPwshr0wsvPl5R7gKhWtoJdMw'
+            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzN2Y3YmZkZWU2MGYxZjlkYTFkOSIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI1NDc4MzcsImV4cCI6MTU4MjYzMTgzNywiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvciIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiXX0.vHf-PVGLO6cVvTPYcGvp4ADNXrTj2PFqR_j_CzXRLcoMGEPjiTMvru6Sf7ZEtqbOThyHZC_CIH2rV7vb957ktqVCcDP6NnqALCofjWXMuFEHFw4KZEqBs3hiFc_Ipy4SFmFtG3vg44xq8yR1IzqeG6HhP3_uVZ2otRQ7UwBfM0Yrx3tLVeKU-Rzrp7Wz4vD4ywdF80z1uOZhtFV46TmKiO0F0O0ffErcjRusiF1olva9mbbEDGqFJ8QrMyi7QgOaR2CrQ1A_h3qKp_5lfGbs7a8hjOvGvxuARmZoB7k4uXtIrM6VJcYP815xQ6mWT7dI1jwV70wZ_1JHVRWVRIeeGg'
         }
 
         self.executive_producer_auth = {
-            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzNzY1MjNiZjNhMGU1YzAwMjI5NiIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI0NTg1MjEsImV4cCI6MTU4MjU0MjUyMSwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvciIsImRlbGV0ZTptb3ZpZXMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInBvc3Q6YWN0b3JzIiwicG9zdDptb3ZpZXMiXX0.YTfHmosdQgxk10k5LaErg1Hj60jFzQvSjGQqrqLWKw3sn1aYy7_FWztN4UcTLyH3Qeb0VrGk3T-TpuaZDm_UbO9XLIJLgjBBX2-thwB2cMkrHLkakCfSw4faXTwUKiGFKgXVbKwBdroqt4-A8Xjhuda4RuBOdBDWk5EhMIroRJiXqwcfUcOMPOc0te0KqvkvA99x-RUqhQDZP8pyaMBrMri7nnkkKi4dxsOL77YgSfJeHWIypHJjICxTCv3g73NZxg9u-f921IPsG7MGSGniJl96b1kvl6wB5VSJADAMjdTNMdLmLAzT1s26xhXnEYZXdDAK5rHGNNXYStxaf1q8zw'
+            'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVTTRSRVUxUVRWR016VkNPVVV3UXpNd056QTFRek15TlVVeU9USkdRalpCT1RJME9FWkVOUSJ9.eyJpc3MiOiJodHRwczovL3Blbm5jb2ZmZWUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNGMzNzY1MjNiZjNhMGU1YzAwMjI5NiIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE1ODI1NDc3ODUsImV4cCI6MTU4MjYzMTc4NSwiYXpwIjoiVlF3aWhZbDU5RlE3NzZ1ZVUzbjMxN0Flbnptem11ZzAiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvciIsImRlbGV0ZTptb3ZpZXMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInBvc3Q6YWN0b3JzIiwicG9zdDptb3ZpZXMiXX0.ThfwoC0WGULun2lKZXBkJ96tMcn7i3WH1hROQpQWLH0W4W74CdXdMkNhVpDYFtutnDd2f5OR3t-34H1POSnnI7LAPjnx_tkOMzS7VZgL03aXkCB-tGLGjMQRjL0CJkjwxZON-RVyKwUxiGMjlgpRTtXXFrULZ-Z05tp5_pf8I_ezU2bD_AYLaBLnpiZluTab2OydEsfm1XjKC2nx84TEoYz7z9BrPZjc3NrkFhUQeFiJbSpPAb2M3F7Fv8Kqt5LXEzytVgvCL3WsseBSM-wPLpCis9amdzKPGV4gywLm-rCUvSVawQqzEDy-tsCnuegKuww2BqPMBOQUfDXbCrJpkQ'
         }
 
         self.starting_movie = {
@@ -53,6 +53,12 @@ class CastingTestCase(unittest.TestCase):
             'name': 'Taraji P. Henson',
             'age': '40',
             'gender': 'female'
+        }
+
+        self.new_actor_2 = {
+            'name': 'Bernard',
+            'age': '40',
+            'gender': 'non-binary'
         }
 
         self.patch_actor = {
@@ -132,16 +138,21 @@ class CastingTestCase(unittest.TestCase):
 
                 self.assertEqual(res.status_code, 200)
                 self.assertIsNotNone(data['actors'])
+#need to break into different tests
+    def test_post_actor_casting_assistant(self):
+        res = self.client().post('/actors', json=self.new_actor, headers=self.casting_assistant_auth)
+        
+        self.assertEqual(res.status_code, 401)
 
-    def test_post_actor(self):
-        for permission in self.permissions:
-            with self.subTest():
-                res = self.client().post('/actors', json=self.new_actor, headers=permission)
-                #if blocks to check different permissions
-                if permission == self.casting_assistant_auth:
-                    self.assertEqual(res.status_code, 401)
-                else:
-                    self.assertEqual(res.status_code, 201)
+    def test_post_actor_casting_director(self):
+        res = self.client().post('/actors', json=self.new_actor, headers=self.casting_director_auth)
+        
+        self.assertEqual(res.status_code, 201)
+
+    def test_post_actor_executive_producer(self):
+        res = self.client().post('/actors', json=self.new_actor, headers=self.executive_producer_auth)
+        
+        self.assertEqual(res.status_code, 201)
 
     def test_patch_actor(self):
         for permission in self.permissions:
@@ -177,6 +188,36 @@ class CastingTestCase(unittest.TestCase):
         res = self.client().delete('/actors/1000', headers=self.executive_producer_auth)
 
         self.assertEqual(res.status_code, 404)
+
+    def test_get_actors_405(self):
+        res = self.client().delete('/actors', headers=self.executive_producer_auth)
+
+        self.assertEqual(res.status_code, 405)
+
+    def test_get_movies_405(self):
+        res = self.client().delete('/movies', headers=self.executive_producer_auth)
+
+        self.assertEqual(res.status_code, 405)
+
+    def test_patch_movies_404(self):
+        res = self.client().patch('/movies/1000', headers=self.executive_producer_auth)
+
+        self.assertEqual(res.status_code, 404)
+
+    def test_patch_actors_404(self):
+        res = self.client().patch('/actors/1000', headers=self.executive_producer_auth)
+
+        self.assertEqual(res.status_code, 404)
+
+    def test_post_actors_422(self):
+        res = self.client().post('/actors', json={}, headers=self.executive_producer_auth)
+
+        self.assertEqual(res.status_code, 422)
+
+    def test_post_movies_422(self):
+        res = self.client().post('/movies', json={}, headers=self.executive_producer_auth)
+
+        self.assertEqual(res.status_code, 422)
 
 if __name__ == "__main__":
     unittest.main()
